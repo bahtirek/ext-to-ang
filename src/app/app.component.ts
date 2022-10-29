@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-// @ts-ignore
-/* import * as select from "./common/select"; */
-import { OnclickService } from './onclick.service';
+import { OnclickService } from './services/onclick.service';
 
 @Component({
   selector: 'ez-bug-ext',
@@ -14,8 +12,7 @@ export class AppComponent {
   clicked() {
     console.log("clicked");
     const el = document.getElementById('myButton')
-    console.log(this.title);
-    // @ts-ignore
+
     this.select.onSelect()
   }
 }
