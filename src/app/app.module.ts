@@ -6,6 +6,12 @@ import { ExtensionComponent } from './extension/extension.component';
 import { MenuModule } from './menu/menu.module';
 import { PagesModule } from './pages/pages.module';
 
+declare global {
+  interface Window {
+    selectButtonComponent?: any;
+  }
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,4 +25,5 @@ import { PagesModule } from './pages/pages.module';
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

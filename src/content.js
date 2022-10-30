@@ -35,7 +35,8 @@ async function gotMessage(message, sender, sendResponse) {
      * Used for dynamic elements such as drop downs.
      */
     if (message == "trigger_select") {
-        window.selectButtonComponent.toggleSelectButton();        
+        console.log('trigger select');
+        window.selectButtonComponent.onMenuBtnClick();       
     }
 
     /**

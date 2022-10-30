@@ -180,7 +180,6 @@ export class OnclickService {
 
                     if(parentElement?.classList.contains('ui-br-ext-outlined-element')){
                         parentOutlined = true;
-                        console.log(this.ui_br_ext_previousElement.parentCount);
                         
                         this.ui_br_ext_previousElement.parentCount ++;
                         break;
@@ -189,7 +188,6 @@ export class OnclickService {
                 }
 
                 if(!parentOutlined){
-                        console.log(this.ui_br_ext_previousElement.parentCount);
                     this.ui_br_ext_previousElement.parentCount ++;
                 }
 
@@ -211,7 +209,6 @@ export class OnclickService {
                 
             this.outlineSelectedElement(element);
             this.elementService.activeElement = element;
-            console.log(window.getComputedStyle(element));
             
 
             //this.displayReportBugButton(true);
@@ -265,7 +262,6 @@ export class OnclickService {
     if(!bodyChildren) {
         bodyChildren = document.querySelectorAll('body > *:not(ez-bug-ext):not(script):not(noscript):not(style)')
     }
-    console.log(bodyChildren);
     
     bodyChildren.forEach((el: any) => {
         el.addEventListener('click', this.preventClick, {capture: true});

@@ -9,26 +9,35 @@ import { OnclickService } from 'src/app/services/onclick.service';
 })
 export class SelectBtnComponent implements OnInit {
 
-  constructor(private onClick: OnclickService, private activeBtnService: ActiveBtnService) { }
+
+  constructor(private onClick: OnclickService, private activeBtnService: ActiveBtnService) {
+   
+  }
+
 
   isActive: boolean = false;
   activeBtn: string = '';
   currentBtn = "ui-br-ext-select-button";
 
   ngOnInit(): void {
+    console.log('ng on init');
+    
     this.activeBtnService.activeBtnObservable.subscribe(
       activeBtn => {
         this.activeBtn = activeBtn;
-        console.log(activeBtn);
-        
+
+        /* If other button clicked set this btn to false */
         if(this.activeBtn != this.currentBtn) this.isActive = false;
       }
     )
+    window.selectButtonComponent = this;
+    console.log(window.selectButtonComponent);
+    
   }
 
   onMenuBtnClick () {
-    this.onClick.onSelect();
     this.activeBtnUpdate();
+    this.onClick.onSelect();
   }
 
   activeBtnUpdate(){
