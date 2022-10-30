@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import { ElementService } from './element.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OnclickService {
 
-    constructor() { }
+    constructor(private elementService: ElementService) { }
 
     ui_br_ext_previousElement: any = {
         element : null,
@@ -209,10 +210,11 @@ export class OnclickService {
         ){
                 
             this.outlineSelectedElement(element);
-            this.displayReportBugButton(true);
-                //globalStore.store.selectedElement = element;
-                //Used to crop dynamic elements
-                //globalStore.store.selectedElementRect = element.getBoundingClientRect();
+            this.elementService.activeElement = element;
+            console.log(window.getComputedStyle(element));
+            
+
+            //this.displayReportBugButton(true);
         }
 
         if(this.ui_br_ext_previousElement.parentCount === this.ui_br_ext_parentLimit){
@@ -227,11 +229,16 @@ export class OnclickService {
      */
     displayReportBugButton (enable: any){
 
-        /* const reportBugButton = document.getElementById('ui-br-ext-report-bug-button');
+        const reportBugButton: any = document.getElementById('ui-br-ext-report-button');
 
         reportBugButton.style.display = enable 
         ? reportBugButton.classList.remove('ui-br-ext-report-bug-inactive') 
-        : reportBugButton.classList.add('ui-br-ext-report-bug-inactive');   */  
+        : reportBugButton.classList.add('ui-br-ext-report-bug-inactive');  
+        /* if(reportBugButton.style.display = enable ){
+            reportBugButton.classList.remove('ui-br-ext-report-bug-inactive') 
+        } else {
+            reportBugButton.classList.add('ui-br-ext-report-bug-inactive');  
+        } */
 
     }
 
@@ -256,8 +263,10 @@ export class OnclickService {
 
     addClickBlocker (bodyChildren?: any) {
     if(!bodyChildren) {
-        bodyChildren = document.querySelectorAll('body > *:not(#ui-br-ext-extension):not(script):not(noscript):not(style)')
+        bodyChildren = document.querySelectorAll('body > *:not(ez-bug-ext):not(script):not(noscript):not(style)')
     }
+    console.log(bodyChildren);
+    
     bodyChildren.forEach((el: any) => {
         el.addEventListener('click', this.preventClick, {capture: true});
         el.addEventListener('mousedown', this.preventClick, {capture: true});
@@ -290,4 +299,5 @@ export class OnclickService {
     event.stopPropagation();
     return false;
     }
+    
 }

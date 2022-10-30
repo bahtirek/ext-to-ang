@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActiveBtnService } from '../services/active-btn.service';
 
 @Component({
   selector: 'app-extension',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExtensionComponent implements OnInit {
 
-  constructor() { }
+  constructor(private activeBtnService: ActiveBtnService) { }
+
+  activeBtn: string = '';
 
   ngOnInit(): void {
+    this.activeBtnService.activeBtnObservable.subscribe(
+      activeBtn => {
+        this.activeBtn = activeBtn;
+      }
+    )
   }
 
 }
