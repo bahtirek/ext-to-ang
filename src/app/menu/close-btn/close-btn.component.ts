@@ -12,4 +12,9 @@ export class CloseBtnComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onMenuBtnClick(){
+    const extension = document.getElementById("ui-br-ext-extension") as HTMLElement;
+    extension.style.display = 'none';
+  }
+
 }

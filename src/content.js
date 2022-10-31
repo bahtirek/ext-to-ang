@@ -17,14 +17,15 @@ async function gotMessage(message, sender, sendResponse) {
      * message: inject - turns on the extension and displays the extension UI.
      * Triggered on extention button click.
      *  */ 
-    if (message === 'inject') {
-        console.log("content injected");
-        console.log("content injected");
-        const extention = document.getElementById("ui-br-ext-extension");
-        if(extention) {
-            window.destroyeUibrextInstance()
+     if (message === 'inject') { 
+        const extension = document.getElementById("ui-br-ext-extension");
+        if(extension) {
+            const computedstyle = window.getComputedStyle(extension)
+            if (computedstyle.display == 'none') {
+                extension.style.display = 'block'
+            } 
         } else {
-            document.body.insertAdjacentHTML('beforeend', `<ez-bug-ext id="ui-br-ext-extension-container"></ez-bug-ext>`);
+            document.body.insertAdjacentHTML('beforeend', `<ez-bug-ext></ez-bug-ext>`);
         }
     }
 
@@ -35,8 +36,8 @@ async function gotMessage(message, sender, sendResponse) {
      * Used for dynamic elements such as drop downs.
      */
     if (message == "trigger_select") {
-        console.log('trigger select');
-        window.selectButtonComponent.onMenuBtnClick();       
+        const selectBtn = document.getElementById('ui-br-ext-select-button');    
+        selectBtn.click();     
     }
 
     /**
