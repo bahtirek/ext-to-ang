@@ -13,7 +13,7 @@ export class ExtensionComponent implements OnInit {
   activeBtn: string = '';
 
   ngOnInit(): void {
-    this.activeBtnService.activeBtnObservable.subscribe(
+    this.activeBtnService.activeBtnSubject.subscribe(
       activeBtn => {
         this.activeBtn = activeBtn;
       }

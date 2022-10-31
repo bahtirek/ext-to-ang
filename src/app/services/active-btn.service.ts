@@ -10,8 +10,6 @@ export class ActiveBtnService {
 
   activeBtn: string = '';
 
-  activeBtnSource = new Subject<string>();
-
-  activeBtnObservable = this.activeBtnSource.asObservable();
+  activeBtnSubject = new Subject<string>();
 
 }

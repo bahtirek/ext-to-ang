@@ -15,7 +15,7 @@ export class VideoBtnComponent implements OnInit {
   currentBtn = "ui-br-ext-video-button";
 
   ngOnInit(): void {
-    this.activeBtnService.activeBtnObservable.subscribe(
+    this.activeBtnService.activeBtnSubject.subscribe(
       activeBtn => {
         this.activeBtn = activeBtn;
         if(this.activeBtn != this.currentBtn) this.isActive = false;
@@ -30,10 +30,10 @@ export class VideoBtnComponent implements OnInit {
   activeBtnUpdate(){
     if(this.isActive) {
       this.isActive = false;
-      this.activeBtnService.activeBtnSource.next('');
+      this.activeBtnService.activeBtnSubject.next('');
     } else {
       this.isActive = true;
-      this.activeBtnService.activeBtnSource.next(this.currentBtn);
+      this.activeBtnService.activeBtnSubject.next(this.currentBtn);
     }
   }
 
