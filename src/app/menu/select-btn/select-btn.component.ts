@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActiveBtnService } from 'src/app/services/active-btn.service';
 import { OnclickService } from 'src/app/services/onclick.service';
 
@@ -8,11 +8,11 @@ import { OnclickService } from 'src/app/services/onclick.service';
   styleUrls: ['./select-btn.component.less']
 })
 export class SelectBtnComponent implements OnInit {
+  
+  /* Why ! sign is used - https://stackoverflow.com/questions/49699067/property-has-no-initializer-and-is-not-definitely-assigned-in-the-construc */
+  @ViewChild('selectBtnElement', {static: false}) selectBtnElement!: ElementRef;
 
-
-  constructor(private onClick: OnclickService, private activeBtnService: ActiveBtnService) {
-   
-  }
+  constructor(private onClick: OnclickService, private activeBtnService: ActiveBtnService) { }
 
 
   isActive: boolean = false;
@@ -20,8 +20,6 @@ export class SelectBtnComponent implements OnInit {
   currentBtn = "ui-br-ext-select-button";
 
   ngOnInit(): void {
-    console.log('ng on init');
-    
     this.activeBtnService.activeBtnObservable.subscribe(
       activeBtn => {
         this.activeBtn = activeBtn;
@@ -31,8 +29,6 @@ export class SelectBtnComponent implements OnInit {
       }
     )
     window.selectButtonComponent = this;
-    console.log(window.selectButtonComponent);
-    
   }
 
   onMenuBtnClick () {
@@ -48,6 +44,10 @@ export class SelectBtnComponent implements OnInit {
       this.isActive = true;
       this.activeBtnService.activeBtnSource.next(this.currentBtn);
     }
+  }
+
+  fakeClick(){
+    this.selectBtnElement.nativeElement.click();
   }
 
 }
