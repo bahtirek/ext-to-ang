@@ -8,9 +8,6 @@ import { OnclickService } from 'src/app/services/onclick.service';
   styleUrls: ['./select-btn.component.less']
 })
 export class SelectBtnComponent implements OnInit {
-  
-  /* Why ! sign is used - https://stackoverflow.com/questions/49699067/property-has-no-initializer-and-is-not-definitely-assigned-in-the-construc */
-  @ViewChild('selectBtnElement', {static: false}) selectBtnElement!: ElementRef;
 
   constructor(private onClick: OnclickService, private activeBtnService: ActiveBtnService) { }
 
@@ -44,10 +41,6 @@ export class SelectBtnComponent implements OnInit {
       this.isActive = true;
       this.activeBtnService.activeBtnSource.next(this.currentBtn);
     }
-  }
-
-  fakeClick(){
-    this.selectBtnElement.nativeElement.click();
   }
 
 }
