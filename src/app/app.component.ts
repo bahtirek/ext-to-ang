@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { OnclickService } from './services/onclick.service';
 
 @Component({
   selector: 'ez-bug-ext',

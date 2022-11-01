@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActiveBtnService } from 'src/app/services/active-btn.service';
-import { OnclickService } from 'src/app/services/onclick.service';
+import { SelectService } from 'src/app/services/select.service';
 
 @Component({
   selector: 'app-report-btn',
@@ -9,7 +9,7 @@ import { OnclickService } from 'src/app/services/onclick.service';
 })
 export class ReportBtnComponent implements OnInit {
   
-  constructor(private activeBtnService: ActiveBtnService, private onClick: OnclickService) { }
+  constructor(private activeBtnService: ActiveBtnService, private onClick: SelectService) { }
 
   isActive: boolean = false;
   activeBtn: string = '';

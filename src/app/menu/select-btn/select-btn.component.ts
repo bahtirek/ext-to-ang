@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActiveBtnService } from 'src/app/services/active-btn.service';
-import { OnclickService } from 'src/app/services/onclick.service';
+import { SelectService } from 'src/app/services/select.service';
 
 @Component({
   selector: 'app-select-btn',
@@ -9,7 +9,7 @@ import { OnclickService } from 'src/app/services/onclick.service';
 })
 export class SelectBtnComponent implements OnInit {
 
-  constructor(private onClick: OnclickService, private activeBtnService: ActiveBtnService) { }
+  constructor(private onClick: SelectService, private activeBtnService: ActiveBtnService) { }
 
 
   isActive: boolean = false;

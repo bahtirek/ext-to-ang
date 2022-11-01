@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { OnclickService } from 'src/app/services/onclick.service';
+import { SelectService } from 'src/app/services/select.service';
 
 @Component({
   selector: 'app-close-btn',
@@ -8,7 +8,7 @@ import { OnclickService } from 'src/app/services/onclick.service';
 })
 export class CloseBtnComponent implements OnInit {
 
-  constructor(private onClick: OnclickService) { }
+  constructor(private onClick: SelectService) { }
 
   ngOnInit(): void {
   }
