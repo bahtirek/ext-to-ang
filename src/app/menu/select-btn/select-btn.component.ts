@@ -17,29 +17,35 @@ export class SelectBtnComponent implements OnInit {
   currentBtn = "ui-br-ext-select-button";
 
   ngOnInit(): void {
-    this.activeBtnService.activeBtnObservable.subscribe(
+    this.activeBtnService.activeBtnSubject.subscribe(
       activeBtn => {
-        this.activeBtn = activeBtn;
-
-        /* If other button clicked set this btn to false */
-        if(this.activeBtn != this.currentBtn) this.isActive = false;
+        this.activeBtn = activeBtn;    
+        this.deselect()   
       }
     )
-    window.selectButtonComponent = this;
+    //window.selectButtonComponent = this;
   }
 
   onMenuBtnClick () {
     this.activeBtnUpdate();
-    this.onClick.onSelect();
   }
 
   activeBtnUpdate(){
     if(this.isActive) {
       this.isActive = false;
-      this.activeBtnService.activeBtnSource.next('');
+      this.activeBtnService.activeBtnSubject.next('');
     } else {
       this.isActive = true;
-      this.activeBtnService.activeBtnSource.next(this.currentBtn);
+      this.activeBtnService.activeBtnSubject.next(this.currentBtn);
+      this.onClick.onSelect();
+    }
+  }
+
+  deselect(){
+    /* If other button clicked set this btn to false */
+    if(this.activeBtn != this.currentBtn) {
+      this.isActive = false;
+      this.onClick.onDeselect();
     }
   }
 
