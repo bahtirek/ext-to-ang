@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DragService } from '../services/drag.service';
 
 @Component({
   selector: 'app-menu',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private drugService: DragService) { }
 
   ngOnInit(): void {
+  }
+
+  onTouchStart(event: any){
+    this.drugService.onTouchStart(event);
+  }
+
+  onMouseDown(event: MouseEvent) {
+    this.drugService.onMouseDown(event);
   }
 
 }
