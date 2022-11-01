@@ -55,10 +55,11 @@ export class OnclickService {
         // Remove outline from any previously selected elements.
         document.querySelectorAll('.ui-br-ext-outlined-element').forEach((element: any) => {
             element.classList.remove('ui-br-ext-outlined-element');
-            element.style.cssText = element.style.cssText.replace('outline: red dashed 3px !important;', '');
-            element.style.cssText = element.style.cssText.replace('outline: #4fff00 dashed 3px !important;', '');
-            element.style.cssText = element.style.cssText.replace('outline: rgb(79, 255, 0) dashed 3px !important;', '');
-            element.removeAttribute('data-ext-index');
+        });
+
+        // Remove outline from any previously hovered elements.
+        document.querySelectorAll('.ui-br-ext-hovered').forEach((element: any) => {
+            element.classList.remove('ui-br-ext-hovered');
         });
 
         // Reset the global variable that holds the previously selected element properties.
@@ -248,13 +249,9 @@ export class OnclickService {
         // Remove outline from any previously selected elements.
         document.querySelectorAll('.ui-br-ext-outlined-element').forEach((element: any) => {
             element.classList.remove('ui-br-ext-outlined-element');
-            element.style.cssText = element.style.cssText.replace('outline: red dashed 3px !important;', '');
-            element.style.cssText = element.style.cssText.replace('outline: #4fff00 dashed 3px !important;', '');
-            element.style.cssText = element.style.cssText.replace('outline: rgb(79, 255, 0) dashed 3px !important;', '');
         });
 
         element.classList.add('ui-br-ext-outlined-element');
-        element.style.cssText = element.style.cssText + "outline: red dashed 3px !important;";
 
     }
 
@@ -281,9 +278,6 @@ export class OnclickService {
         el.removeEventListener('mouseup', this.preventClick, true);
         el.addEventListener('dblclick', this.preventClick, {capture: true});
         el.classList.remove('ui-br-ext-outlined-element');
-        el.style.cssText = el.style.cssText.replace('outline: red dashed 3px !important;', '');
-        el.style.cssText = el.style.cssText.replace('outline: #4fff00 dashed 3px !important;', '');
-        el.style.cssText = el.style.cssText.replace('outline: rgb(79, 255, 0) dashed 3px !important;', '');
     });
     }
 
