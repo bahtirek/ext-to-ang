@@ -4,6 +4,7 @@ import { ReportPageComponent } from './report-page/report-page.component';
 import { ReviewPageComponent } from './review-page/review-page.component';
 import { VideoPageComponent } from './video-page/video-page.component';
 import { SettingsPageComponent } from './settings-page/settings-page.component';
+import { ResizeComponent } from '../shared/resize/resize.component';
 
 
 
@@ -12,7 +13,8 @@ import { SettingsPageComponent } from './settings-page/settings-page.component';
     ReportPageComponent,
     ReviewPageComponent,
     VideoPageComponent,
-    SettingsPageComponent
+    SettingsPageComponent,
+    ResizeComponent
   ],
   imports: [
     CommonModule
