@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { ElementService } from './element.service';
 import { HoverAndClickService } from './hover-and-click.service';
+import { SelectedElementsService } from './selected-elements.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SelectService {
 
-    constructor(private elementService: ElementService, private hoverClickService: HoverAndClickService) { }
+    constructor(private elementService: ElementService, private hoverClickService: HoverAndClickService, private selectedElementService: SelectedElementsService) { }
 
     ui_br_ext_previousElement: any = {
         element : null,
@@ -59,10 +60,12 @@ export class SelectService {
             document.querySelectorAll('.ui-br-ext-outlined-element').forEach((element: any) => {
                 element.classList.remove('ui-br-ext-outlined-element');
             });
+            document.querySelectorAll('.ui-br-ext-outlined-element-selected').forEach((element: any) => {
+                element.classList.remove('ui-br-ext-outlined-element-selected');
+            });
         }
 
         // Remove outline from any previously hovered elements.
-        console.log(removeSelectedOutline);
         
         document.querySelectorAll('.ui-br-ext-hovered').forEach((element: any) => {
             element.classList.remove('ui-br-ext-hovered');
@@ -114,17 +117,19 @@ export class SelectService {
     getMouseCoordinates = (event: any) => {
 
         if(event){
-            const pageX = event.clientX;
+            
 
-            const pageY = event.clientY;
-
-            this.findElementFromPoint(pageX, pageY);
+            this.findElementFromPoint(event);
 
         } 
         
     }
 
-    findElementFromPoint (pageX: any, pageY: any){
+    findElementFromPoint (event: any){
+
+        const pageX = event.clientX;
+
+        const pageY = event.clientY;
 
         let element = document.elementFromPoint(pageX, pageY);
 
@@ -189,7 +194,7 @@ export class SelectService {
             && element?.closest('#ui-br-ext-extension') === null
         ){
                 
-            this.outlineSelectedElement(element);
+            this.outlineSelectedElement(element, event);
             this.elementService.activeElement = element;
             
 
@@ -225,15 +230,25 @@ export class SelectService {
      * It styles the selected element by outlining it.
      * @param {selected element} element 
      */
-    outlineSelectedElement (element: any) {
+    outlineSelectedElement (element: any, event: any) {
 
         // Remove outline from any previously selected elements.
-        document.querySelectorAll('.ui-br-ext-outlined-element').forEach((element: any) => {
+        if (event.shiftKey) {
+            element.classList.remove('ui-br-ext-outlined-element-selected');
+        } else {
+            document.querySelectorAll('.ui-br-ext-outlined-element').forEach((element: any) => {
+                element.classList.remove('ui-br-ext-outlined-element');
+            });
+    
+            element.classList.add('ui-br-ext-outlined-element');
+            this.selectedElementService.lastSelectedElement = element;
+        }
+
+        /* document.querySelectorAll('.ui-br-ext-outlined-element').forEach((element: any) => {
             element.classList.remove('ui-br-ext-outlined-element');
         });
 
-        element.classList.add('ui-br-ext-outlined-element');
-
+        element.classList.add('ui-br-ext-outlined-element'); */
     }
     
 }

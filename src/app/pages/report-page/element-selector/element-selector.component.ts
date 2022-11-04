@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SelectedElementsService } from 'src/app/services/selected-elements.service';
 import { SelectService } from '../../../services/select.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { SelectService } from '../../../services/select.service';
 })
 export class ElementSelectorComponent implements OnInit {
 
-  constructor(private onClick: SelectService ) { }
+  constructor(private onClick: SelectService, private selectedElementService: SelectedElementsService ) { }
 
   isActive: boolean = false;
   activeBtn: string = '';
@@ -26,6 +27,7 @@ export class ElementSelectorComponent implements OnInit {
     if(this.isActive) {
       this.isActive = false;
       this.onClick.onDeselect(false);
+      this.selectedElementService.addSelectedClass();
     } else {
       this.isActive = true;
       this.onClick.onSelect();
