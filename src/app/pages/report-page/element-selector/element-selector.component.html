@@ -1,0 +1,20 @@
+<div>
+    <span #selectBtnElement class="ui-br-ext-operator ui-br-ext-alwaysOn" id="ui-br-ext-select-button" (click)="onSelectBtnClick()" [ngClass]="{'ui-br-ext-active': isActive}">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" class="ui-br-ext-feather feather-mouse-pointer">
+            <path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z" />
+            <path d="M13 13l6 6" /></svg>
+    </span>
+    <!-- <span #selectBtnElement class="ui-br-ext-operator ui-br-ext-alwaysOn" id="ui-br-ext-select-button" (click)="onSelectBtnClick()" *ngIf="!isActive">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" class="ui-br-ext-feather feather-mouse-pointer">
+            <path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z" />
+            <path d="M13 13l6 6" /></svg>
+    </span>
+    <span #selectBtnElement class="ui-br-ext-operator ui-br-ext-alwaysOn ui-br-ext-active" id="ui-br-ext-select-button" (click)="onSelectBtnClick()" *ngIf="isActive">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00dd55" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minimize">
+            <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/></svg>
+    </span> -->
+    <span>Select element</span>
+    <span class="ui-br-ext-hint" *ngIf="isActive">shit+click to Unselect</span>
+</div>

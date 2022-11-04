@@ -35,6 +35,7 @@ export class ReportBtnComponent implements OnInit {
     } else {
       this.isActive = true;
       this.activeBtnService.activeBtnSubject.next(this.currentBtn);
+      this.onClick.onDeselect(true);
     }
   }
 

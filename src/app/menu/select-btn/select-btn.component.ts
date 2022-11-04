@@ -45,7 +45,7 @@ export class SelectBtnComponent implements OnInit {
     /* If other button clicked set this btn to false */
     if(this.activeBtn != this.currentBtn) {
       this.isActive = false;
-      this.onClick.onDeselect();
+      //this.onClick.onDeselect(true);
     }
   }
 

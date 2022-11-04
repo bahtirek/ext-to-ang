@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActiveBtnService } from 'src/app/services/active-btn.service';
+import { SelectService } from 'src/app/services/select.service';
 
 @Component({
   selector: 'app-video-btn',
@@ -8,7 +9,7 @@ import { ActiveBtnService } from 'src/app/services/active-btn.service';
 })
 export class VideoBtnComponent implements OnInit {
 
-  constructor(private activeBtnService: ActiveBtnService) { }
+  constructor(private activeBtnService: ActiveBtnService, private onClick: SelectService) { }
 
   isActive: boolean = false;
   activeBtn: string = '';
@@ -34,6 +35,7 @@ export class VideoBtnComponent implements OnInit {
     } else {
       this.isActive = true;
       this.activeBtnService.activeBtnSubject.next(this.currentBtn);
+      this.onClick.onDeselect(true);
     }
   }
 

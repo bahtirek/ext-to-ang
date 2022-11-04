@@ -14,7 +14,7 @@ export class CloseBtnComponent implements OnInit {
   }
 
   onMenuBtnClick(){
-    this.onClick.onDeselect();
+    this.onClick.onDeselect(true);
     const extension = document.getElementsByTagName("ez-bug-ext")[0] as HTMLElement;
     extension.style.display = 'none';
   }

@@ -47,18 +47,23 @@ export class SelectService {
         this.addClickToHtml(this.getMouseCoordinates);
     }
 
-    onDeselect () {
+    onDeselect (removeSelectedOutline: boolean) {
 
         document.getElementById('ui-br-ext-extension-style')?.remove();
 
         this.removeClickFromBody(this.getMouseCoordinates);
         
         // Remove outline from any previously selected elements.
-        document.querySelectorAll('.ui-br-ext-outlined-element').forEach((element: any) => {
-            element.classList.remove('ui-br-ext-outlined-element');
-        });
+        if(removeSelectedOutline) {
+            console.log(removeSelectedOutline);
+            document.querySelectorAll('.ui-br-ext-outlined-element').forEach((element: any) => {
+                element.classList.remove('ui-br-ext-outlined-element');
+            });
+        }
 
         // Remove outline from any previously hovered elements.
+        console.log(removeSelectedOutline);
+        
         document.querySelectorAll('.ui-br-ext-hovered').forEach((element: any) => {
             element.classList.remove('ui-br-ext-hovered');
         });
