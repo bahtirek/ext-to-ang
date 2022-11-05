@@ -8,30 +8,47 @@ import { SelectService } from '../../../services/select.service';
   styleUrls: ['./element-selector.component.less']
 })
 export class ElementSelectorComponent implements OnInit {
+  label: string = '';
 
-  constructor(private onClick: SelectService, private selectedElementService: SelectedElementsService ) { }
+  constructor(private select: SelectService, private selectedElementService: SelectedElementsService ) { }
 
-  isActive: boolean = false;
+  isSelectetorActive: boolean = false;
   activeBtn: string = '';
   currentBtn = "ui-br-ext-select-button";
+  isAnyElementSelected: boolean = false;
 
   ngOnInit(): void {
 
   }
 
   onSelectBtnClick () {
-    this.activeBtnUpdate()
+    this.activeBtnUpdate();
+    this.select.isElementSelected.subscribe((isSelected) => {
+      this.isAnyElementSelected = isSelected;
+    })
   }
 
   activeBtnUpdate(){
-    if(this.isActive) {
-      this.isActive = false;
-      this.onClick.onDeselect(false);
-      this.selectedElementService.addSelectedClass();
+    if(this.isSelectetorActive) {
+      this.isSelectetorActive = false;
+      this.isAnyElementSelected = false;
+      this.select.onDeselect(false);
     } else {
-      this.isActive = true;
-      this.onClick.onSelect();
+      this.isSelectetorActive = true;
+      this.isAnyElementSelected = false;
+      this.selectedElementService.resetSelectedElement();
+      this.select.onSelect();
     }
+  }
+
+  saveLabel(){
+    this.label = this.label.trim();
+    if(this.label) {
+      if (this.selectedElementService.completeElementSelection(this.label)) {
+        this.onSelectBtnClick();
+        this.label = '';
+      }
+    } 
   }
 
 }

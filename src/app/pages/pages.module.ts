@@ -7,6 +7,7 @@ import { SettingsPageComponent } from './settings-page/settings-page.component';
 import { ResizeComponent } from '../shared/resize/resize.component';
 import { ElementSelectorComponent } from './report-page/element-selector/element-selector.component';
 import { ScreenCapturerComponent } from './report-page/screen-capturer/screen-capturer.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -21,7 +22,8 @@ import { ScreenCapturerComponent } from './report-page/screen-capturer/screen-ca
     ScreenCapturerComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   exports: [
     ReportPageComponent,

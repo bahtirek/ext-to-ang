@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { ElementService } from './element.service';
 import { HoverAndClickService } from './hover-and-click.service';
 import { SelectedElementsService } from './selected-elements.service';
@@ -9,6 +10,8 @@ import { SelectedElementsService } from './selected-elements.service';
 export class SelectService {
 
     constructor(private elementService: ElementService, private hoverClickService: HoverAndClickService, private selectedElementService: SelectedElementsService) { }
+
+    isElementSelected = new Subject<boolean>();
 
     ui_br_ext_previousElement: any = {
         element : null,
@@ -56,12 +59,19 @@ export class SelectService {
         
         // Remove outline from any previously selected elements.
         if(removeSelectedOutline) {
-            console.log(removeSelectedOutline);
             document.querySelectorAll('.ui-br-ext-outlined-element').forEach((element: any) => {
                 element.classList.remove('ui-br-ext-outlined-element');
             });
             document.querySelectorAll('.ui-br-ext-outlined-element-selected').forEach((element: any) => {
                 element.classList.remove('ui-br-ext-outlined-element-selected');
+                element.removeAttribute('ez-bug-selected-label')
+            });
+            document.querySelectorAll('.ez-bug-element-label').forEach((element: any) => {
+                element.remove()
+            });
+        } else {
+            document.querySelectorAll('.ui-br-ext-outlined-element').forEach((element: any) => {
+                element.classList.remove('ui-br-ext-outlined-element');
             });
         }
 
@@ -213,11 +223,11 @@ export class SelectService {
      */
     displayReportBugButton (enable: any){
 
-        const reportBugButton: any = document.getElementById('ui-br-ext-report-button');
+        /* const reportBugButton: any = document.getElementById('ui-br-ext-report-button');
 
         reportBugButton.style.display = enable 
         ? reportBugButton.classList.remove('ui-br-ext-report-bug-inactive') 
-        : reportBugButton.classList.add('ui-br-ext-report-bug-inactive');  
+        : reportBugButton.classList.add('ui-br-ext-report-bug-inactive'); */  
         /* if(reportBugButton.style.display = enable ){
             reportBugButton.classList.remove('ui-br-ext-report-bug-inactive') 
         } else {
@@ -233,16 +243,15 @@ export class SelectService {
     outlineSelectedElement (element: any, event: any) {
 
         // Remove outline from any previously selected elements.
-        if (event.shiftKey) {
-            element.classList.remove('ui-br-ext-outlined-element-selected');
-        } else {
-            document.querySelectorAll('.ui-br-ext-outlined-element').forEach((element: any) => {
-                element.classList.remove('ui-br-ext-outlined-element');
-            });
-    
-            element.classList.add('ui-br-ext-outlined-element');
-            this.selectedElementService.lastSelectedElement = element;
-        }
+        
+        document.querySelectorAll('.ui-br-ext-outlined-element').forEach((element: any) => {
+            element.classList.remove('ui-br-ext-outlined-element');
+        });
+
+        element.classList.add('ui-br-ext-outlined-element');
+        this.selectedElementService.lastSelectedElement = element;
+        this.isElementSelected.next(true)
+        
 
         /* document.querySelectorAll('.ui-br-ext-outlined-element').forEach((element: any) => {
             element.classList.remove('ui-br-ext-outlined-element');
