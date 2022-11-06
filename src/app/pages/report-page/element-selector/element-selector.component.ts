@@ -18,7 +18,7 @@ export class ElementSelectorComponent implements OnInit {
   isAnyElementSelected: boolean = false;
 
   ngOnInit(): void {
-
+    this.selectedElementService.displayAllSelectedElements();
   }
 
   onSelectBtnClick () {

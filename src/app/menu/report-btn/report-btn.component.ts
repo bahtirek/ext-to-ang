@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActiveBtnService } from 'src/app/services/active-btn.service';
 import { SelectService } from 'src/app/services/select.service';
+import { SelectedElementsService } from 'src/app/services/selected-elements.service';
 
 @Component({
   selector: 'app-report-btn',
@@ -9,7 +10,7 @@ import { SelectService } from 'src/app/services/select.service';
 })
 export class ReportBtnComponent implements OnInit {
   
-  constructor(private activeBtnService: ActiveBtnService, private onClick: SelectService) { }
+  constructor(private activeBtnService: ActiveBtnService, private onClick: SelectService, private selectedElemnstService: SelectedElementsService) { }
 
   isActive: boolean = false;
   activeBtn: string = '';
@@ -29,13 +30,13 @@ export class ReportBtnComponent implements OnInit {
   }
 
   activeBtnUpdate(){
+    this.onClick.onDeselect(true);
     if(this.isActive) {
       this.isActive = false;
       this.activeBtnService.activeBtnSubject.next('');
     } else {
       this.isActive = true;
       this.activeBtnService.activeBtnSubject.next(this.currentBtn);
-      this.onClick.onDeselect(true);
     }
   }
 

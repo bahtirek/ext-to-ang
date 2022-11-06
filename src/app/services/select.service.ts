@@ -151,14 +151,11 @@ export class SelectService {
             return false
         }
         
-        console.log(event.shiftKey);
-        
         if(!event.shiftKey && element
         && this.ui_br_ext_previousElement.element !== null
         && this.ui_br_ext_previousElement.parentCount < this.ui_br_ext_parentLimit 
         && element?.closest('#ui-br-ext-extension') === null
         ){
-console.log('passed');
 
             // Previously selected element's top and left coordicates.
             const previousElementRect = this.ui_br_ext_previousElement.element.getBoundingClientRect();
@@ -241,6 +238,7 @@ console.log('passed');
         if(!element.classList.contains('ez-bug-element-label')){
             element.classList.add('ui-br-ext-outlined-element');
             this.selectedElementService.lastSelectedElement = element;
+            /* Needed to show/hide label input */
             this.isElementSelected.next(true)
         }
     }
