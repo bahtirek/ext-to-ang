@@ -6,11 +6,11 @@
             <path d="M13 13l6 6" /></svg>
     </span>
     <span>Select element</span>
-    <!-- <span class="ui-br-ext-hint" *ngIf="isSelectetorActive">shit+click to Unselect</span> -->
+    <span class="ui-br-ext-hint" *ngIf="!isAnyElementSelected">shit+click to Unselect</span>
     <div *ngIf="isAnyElementSelected">
         <div class="ui-br-ext-form-container ui-br-ext-textarea">
             <label for="label">Label</label>
-            <input type="text" name="label" [(ngModel)]="label" placeholder="Do not use space for label"/>
+            <input type="text" name="label" [(ngModel)]="label" />
         </div>
         <button class="ui-br-ext-btn" data-listener="off">
             <span (click)="saveLabel()">Save</span > 
