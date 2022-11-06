@@ -135,7 +135,7 @@ export class SelectService {
         
     }
 
-    findElementFromPoint (event: any){
+    findElementFromPoint (event: any): boolean | void {
 
         const pageX = event.clientX;
 
@@ -145,11 +145,20 @@ export class SelectService {
 
         const retainSelectedElement = document.elementFromPoint(pageX, pageY);
 
-        if(element 
+        if(element && event.shiftKey && element.hasAttribute('ez-bug-selected-label')) {
+            element.classList.remove('ui-br-ext-outlined-element-selected');
+            this.selectedElementService.removeSelection(element.getAttribute('ez-bug-selected-label'));
+            return false
+        }
+        
+        console.log(event.shiftKey);
+        
+        if(!event.shiftKey && element
         && this.ui_br_ext_previousElement.element !== null
         && this.ui_br_ext_previousElement.parentCount < this.ui_br_ext_parentLimit 
         && element?.closest('#ui-br-ext-extension') === null
         ){
+console.log('passed');
 
             // Previously selected element's top and left coordicates.
             const previousElementRect = this.ui_br_ext_previousElement.element.getBoundingClientRect();
@@ -218,25 +227,6 @@ export class SelectService {
     }
 
     /**
-     * 
-     * @param {boolean, true - enables a button, false - disbales a button} enable 
-     */
-    displayReportBugButton (enable: any){
-
-        /* const reportBugButton: any = document.getElementById('ui-br-ext-report-button');
-
-        reportBugButton.style.display = enable 
-        ? reportBugButton.classList.remove('ui-br-ext-report-bug-inactive') 
-        : reportBugButton.classList.add('ui-br-ext-report-bug-inactive'); */  
-        /* if(reportBugButton.style.display = enable ){
-            reportBugButton.classList.remove('ui-br-ext-report-bug-inactive') 
-        } else {
-            reportBugButton.classList.add('ui-br-ext-report-bug-inactive');  
-        } */
-
-    }
-
-    /**
      * It styles the selected element by outlining it.
      * @param {selected element} element 
      */
@@ -248,16 +238,11 @@ export class SelectService {
             element.classList.remove('ui-br-ext-outlined-element');
         });
 
-        element.classList.add('ui-br-ext-outlined-element');
-        this.selectedElementService.lastSelectedElement = element;
-        this.isElementSelected.next(true)
-        
-
-        /* document.querySelectorAll('.ui-br-ext-outlined-element').forEach((element: any) => {
-            element.classList.remove('ui-br-ext-outlined-element');
-        });
-
-        element.classList.add('ui-br-ext-outlined-element'); */
+        if(!element.classList.contains('ez-bug-element-label')){
+            element.classList.add('ui-br-ext-outlined-element');
+            this.selectedElementService.lastSelectedElement = element;
+            this.isElementSelected.next(true)
+        }
     }
     
 }

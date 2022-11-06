@@ -21,7 +21,7 @@ export class SelectedElementsService {
       const xPath: any = this.xpath.getElementXpath(this.lastSelectedElement);
       this.lastSelectedElement.setAttribute('ez-bug-selected-label', dataLabel);
       this.elements.push(new BugElement(label, xPath, dataLabel));
-      this.positionLabel(label);
+      this.positionLabel(label, dataLabel);
       return true;
     } else {
       return false;
@@ -32,16 +32,24 @@ export class SelectedElementsService {
     this.lastSelectedElement = null;
   }
 
-  positionLabel(label: string){
+  positionLabel(label: string, dataLabel: string){
     const position = this.getPosition(this.lastSelectedElement);
     
-    const elementLabel = `<div class="ez-bug-element-label" style="top:${position.top-18}px; left:${position.left-3}px">${label}</div>`
+    const elementLabel = `<div class="ez-bug-element-label" data-ez-bug-element-label="${dataLabel}" style="top:${position.top-18}px; left:${position.left-3}px">${label}</div>`
     document.body.insertAdjacentHTML('beforeend', elementLabel);
   }
 
   getPosition(element: any) {
     var clientRect = element.getBoundingClientRect();
     return {left: clientRect.left + document.body.scrollLeft, top: clientRect.top + document.body.scrollTop};
+  }
+
+  removeSelection(dataLabel: any) {
+    console.log(dataLabel);
+    
+    this.elements = this.elements.filter(element => element.dataLabel != dataLabel);
+    const elements = document.querySelectorAll(`[data-ez-bug-element-label="${dataLabel}"]`);
+    elements[0].remove();
   }
 }
 
