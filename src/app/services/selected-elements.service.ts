@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BugElement } from '../interfaces/bug-element.interface';
+import { UnsavedBugStorageService } from './unsaved-bug-storage.service';
 import { XpathService } from './xpath.service';
 
 @Injectable({
@@ -7,7 +8,7 @@ import { XpathService } from './xpath.service';
 })
 export class SelectedElementsService {
 
-  constructor(private xpath: XpathService) { }
+  constructor(private xpath: XpathService, private unsavedBugStorage: UnsavedBugStorageService) { }
 
   elements: BugElement[] = [];
 
@@ -21,6 +22,7 @@ export class SelectedElementsService {
       const xPath: any = this.xpath.getElementXpath(this.lastSelectedElement);
       this.lastSelectedElement.setAttribute('ez-bug-selected-label', dataLabel);
       this.elements.push(new BugElement(label, xPath, dataLabel));
+      this.unsavedBugStorage.addSelectedElements(this.elements);
       this.positionLabel(label, dataLabel);
       return true;
     } else {
@@ -47,12 +49,13 @@ export class SelectedElementsService {
 
   removeSelection(dataLabel: any) {
     this.elements = this.elements.filter(element => element.dataLabel != dataLabel);
+    this.unsavedBugStorage.addSelectedElements(this.elements);
     const elements = document.querySelectorAll(`[data-ez-bug-element-label="${dataLabel}"]`);
     elements[0].remove();
   }
 
   displayAllSelectedElements() {
-    console.log(this.elements);
+    if(this.elements.length == 0) this.elements = this.unsavedBugStorage.bugReport.elements!;
     
     this.elements.forEach(elementData => {
       let element: any;
@@ -69,5 +72,3 @@ export class SelectedElementsService {
     });
   }
 }
-
-
