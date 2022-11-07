@@ -71,4 +71,8 @@ export class SelectedElementsService {
       this.positionLabel(elementData.label, elementData.dataLabel, element);
     });
   }
+
+  getElements(){
+    return this.elements;
+  }
 }
