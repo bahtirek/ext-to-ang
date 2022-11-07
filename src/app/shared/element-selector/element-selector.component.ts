@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { BugElement } from 'src/app/interfaces/bug-element.interface';
 import { SelectedElementsService } from 'src/app/services/selected-elements.service';
-import { SelectService } from '../../../services/select.service';
+import { SelectService } from '../../services/select.service';
 
 @Component({
   selector: 'app-element-selector',
@@ -16,9 +17,11 @@ export class ElementSelectorComponent implements OnInit {
   activeBtn: string = '';
   currentBtn = "ui-br-ext-select-button";
   isAnyElementSelected: boolean = false;
+  selectedElements: BugElement[] = [];
 
   ngOnInit(): void {
     this.selectedElementService.displayAllSelectedElements();
+    this.selectedElements = this.selectedElementService.getElements();
   }
 
   onSelectBtnClick () {
@@ -45,6 +48,7 @@ export class ElementSelectorComponent implements OnInit {
     this.label = this.label.trim();
     if(this.label) {
       if (this.selectedElementService.completeElementSelection(this.label)) {
+        this.selectedElements = this.selectedElementService.getElements();
         this.onSelectBtnClick();
         this.label = '';
       }

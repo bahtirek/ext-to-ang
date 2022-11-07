@@ -5,8 +5,8 @@ import { ReviewPageComponent } from './review-page/review-page.component';
 import { VideoPageComponent } from './video-page/video-page.component';
 import { SettingsPageComponent } from './settings-page/settings-page.component';
 import { ResizeComponent } from '../shared/resize/resize.component';
-import { ElementSelectorComponent } from './report-page/element-selector/element-selector.component';
-import { ScreenCapturerComponent } from './report-page/screen-capturer/screen-capturer.component';
+import { ElementSelectorComponent } from '../shared/element-selector/element-selector.component';
+import { ScreenCapturerComponent } from '../shared/screen-capturer/screen-capturer.component';
 import { FormsModule } from '@angular/forms';
 
 
