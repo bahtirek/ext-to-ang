@@ -10,6 +10,7 @@ import { ScreenCapturerComponent } from '../shared/screen-capturer/screen-captur
 import { FormsModule } from '@angular/forms';
 import { TabsComponent } from '../shared/tabs/tabs.component';
 import { BugDetailsComponent } from '../shared/bug-details/bug-details.component';
+import { SubmitBugComponent } from '../shared/submit-bug/submit-bug.component';
 
 
 
@@ -24,6 +25,7 @@ import { BugDetailsComponent } from '../shared/bug-details/bug-details.component
     ScreenCapturerComponent,
     TabsComponent,
     BugDetailsComponent,
+    SubmitBugComponent,
   ],
   imports: [
     CommonModule,
