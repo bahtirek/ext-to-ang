@@ -1,0 +1,4 @@
+<div class="ez-bug-ext-tabs">
+    <div *ngFor="let tab of tabs; index as i" (click)="tabClicked(tab.id)" [ngClass]="{'ez-bug-ext-active-tab': tab.id == activeTabId}">{{tab.label}}</div>
+</div>
+

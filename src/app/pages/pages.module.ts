@@ -8,6 +8,8 @@ import { ResizeComponent } from '../shared/resize/resize.component';
 import { ElementSelectorComponent } from '../shared/element-selector/element-selector.component';
 import { ScreenCapturerComponent } from '../shared/screen-capturer/screen-capturer.component';
 import { FormsModule } from '@angular/forms';
+import { TabsComponent } from '../shared/tabs/tabs.component';
+import { BugDetailsComponent } from '../shared/bug-details/bug-details.component';
 
 
 
@@ -19,7 +21,9 @@ import { FormsModule } from '@angular/forms';
     SettingsPageComponent,
     ResizeComponent,
     ElementSelectorComponent,
-    ScreenCapturerComponent
+    ScreenCapturerComponent,
+    TabsComponent,
+    BugDetailsComponent,
   ],
   imports: [
     CommonModule,

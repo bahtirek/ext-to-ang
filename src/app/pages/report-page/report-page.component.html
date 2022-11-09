@@ -1,7 +1,12 @@
 <div class="ui-br-ext-dropdown-item ui-br-ext-report-bug" id="uiBrExtReport">
     <div class="ui-br-ext-drop-title">Report bug</div>
     <div class="ui-br-ext-drop-body">
-        <app-element-selector></app-element-selector>
+        <app-tabs [tabs]="tabs" (activeTab)="setActiveTab($event)"></app-tabs>
+        <div class="ui-br-ext-container ui-br-ext-dropdown" [ngSwitch]="activeTab" >
+            <app-element-selector *ngSwitchCase="'select'"></app-element-selector>
+            <app-bug-details *ngSwitchCase="'details'"></app-bug-details>
+            <app-screen-capturer *ngSwitchCase="'screenshots'"></app-screen-capturer>
+        </div>
     </div>
     <app-resize [pageId]="'uiBrExtReport'"></app-resize>
     <a href="" #downloadImageFull style="display: none !important;"></a>
