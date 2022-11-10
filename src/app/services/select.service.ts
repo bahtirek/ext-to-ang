@@ -144,14 +144,8 @@ export class SelectService {
         let element = document.elementFromPoint(pageX, pageY);
 
         const retainSelectedElement = document.elementFromPoint(pageX, pageY);
-
-        if(element && event.shiftKey && element.hasAttribute('ez-bug-selected-label')) {
-            element.classList.remove('ui-br-ext-outlined-element-selected');
-            this.selectedElementService.removeSelection(element.getAttribute('ez-bug-selected-label'));
-            return false
-        }
         
-        if(!event.shiftKey && element
+        if(element
         && this.ui_br_ext_previousElement.element !== null
         && this.ui_br_ext_previousElement.parentCount < this.ui_br_ext_parentLimit 
         && element?.closest('#ui-br-ext-extension') === null

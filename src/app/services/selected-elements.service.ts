@@ -37,7 +37,7 @@ export class SelectedElementsService {
   positionLabel(label: string, dataLabel: string, element?: any){
     if(!element) element = this.lastSelectedElement;
     const position = this.getPosition(element);
-    const elementLabel = `<div class="ez-bug-element-label" data-ez-bug-element-label="${dataLabel}" style="top:${position.top-18}px; left:${position.left-3}px">${label}</div>`
+    const elementLabel = `<div class="ez-bug-element-label" data-ez-bug-element-label="${dataLabel}" style="top:${position.top-19}px; left:${position.left-3}px">${label}</div>`
     
     document.body.insertAdjacentHTML('beforeend', elementLabel);
   }
@@ -50,8 +50,12 @@ export class SelectedElementsService {
   removeSelection(dataLabel: any) {
     this.elements = this.elements.filter(element => element.dataLabel != dataLabel);
     this.unsavedBugStorage.addSelectedElements(this.elements);
-    const elements = document.querySelectorAll(`[data-ez-bug-element-label="${dataLabel}"]`);
-    elements[0].remove();
+    const elements = document.querySelectorAll(`[ez-bug-selected-label="${dataLabel}"]`);
+    elements[0].classList.remove('ui-br-ext-outlined-element-selected');
+
+    const labelElements = document.querySelectorAll(`[data-ez-bug-element-label="${dataLabel}"]`);
+    labelElements[0].remove();
+    return this.elements;
   }
 
   displayAllSelectedElements() {

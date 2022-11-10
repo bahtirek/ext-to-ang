@@ -55,4 +55,8 @@ export class ElementSelectorComponent implements OnInit {
     } 
   }
 
+  onDeleteSelectedElement(element: BugElement) {
+    this.selectedElements = this.selectedElementService.removeSelection(element.dataLabel)
+  }
+
 }
