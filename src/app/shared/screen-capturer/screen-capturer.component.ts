@@ -33,11 +33,12 @@ export class ScreenCapturerComponent implements OnInit {
     this.toggleExtension.toggle.next(true)
     this.screenshotService.getScreenshot()
       .then(response => {
-        console.log('promise screenshot', response.imgSrc);
+        document.querySelector('body')!.classList.remove('ui-br-ext-hide-hovered');
         this.setScreenshot(response.imgSrc);
       })
       .catch(error => {
         console.log(error);
+        document.querySelector('body')!.classList.remove('ui-br-ext-hide-hovered');
         this.toggleExtension.toggle.next(false);
       });
   }
