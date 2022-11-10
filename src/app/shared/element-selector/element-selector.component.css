@@ -13,6 +13,9 @@
   align-items: center;
   justify-content: space-between;
 }
-.selection-list ul li span:hover {
+.selection-list ul li:hover {
+  background-color: #f7f7f7;
+}
+.selection-list ul li span.trash-icon:hover {
   cursor: pointer;
 }

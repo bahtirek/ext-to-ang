@@ -15,7 +15,8 @@ export class SelectedElementsService {
   lastSelectedElement: any;
 
   completeElementSelection(label: string){
-    const dataLabel = `${Date.now()}--${label.replace(/\s+/g, '-').toLowerCase()}`;
+    let dataLabel = `${Date.now()}--${label.replace(/\s+/g, '-').toLowerCase()}`;
+    if(!label) dataLabel = `${Date.now()}--no-label`;
     if(this.lastSelectedElement){
       this.lastSelectedElement.classList.remove('ui-br-ext-outlined-element');
       this.lastSelectedElement.classList.add('ui-br-ext-outlined-element-selected');

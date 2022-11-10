@@ -46,13 +46,12 @@ export class ElementSelectorComponent implements OnInit {
 
   saveLabel(){
     this.label = this.label.trim();
-    if(this.label) {
-      if (this.selectedElementService.completeElementSelection(this.label)) {
-        this.selectedElements = this.selectedElementService.getElements();
-        this.onSelectBtnClick();
-        this.label = '';
-      }
-    } 
+    if (this.selectedElementService.completeElementSelection(this.label)) {
+      this.selectedElements = this.selectedElementService.getElements();
+      this.onSelectBtnClick();
+      this.label = '';
+    }
+    
   }
 
   onDeleteSelectedElement(element: BugElement) {
