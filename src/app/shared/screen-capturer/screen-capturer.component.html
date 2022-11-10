@@ -1,1 +1,26 @@
-<p>screenshot component</p>
+<div class="ui-br-ext-selector-component">
+    <span #selectBtnScreenshot class="ui-br-ext-operator ui-br-ext-alwaysOn" id="ui-br-ext-select-button" (click)="onScreenshotBtnClick()" [ngClass]="{'ui-br-ext-active': isScreenshotActive}">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-image"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+    </span>
+    <span>Take a Screenshot</span>
+    <div *ngIf="screenshot.filename">
+        <div class="ui-br-ext-form-container ui-br-ext-textarea">
+            <label for="label">File name</label>
+            <input type="text" name="label" [(ngModel)]="screenshot.filename" />
+        </div>
+        <button class="ui-br-ext-btn" data-listener="off">
+            <span (click)="saveScreenshot()">Save</span > 
+        </button>
+    </div>
+    <a href="" id="ui-br-ext-download-image-full" style="display: none"></a>
+</div>
+<div class="ui-br-ext-selection-list">
+    <ul>
+        <li *ngFor="let screenshot of screenshots; index as i">
+            <span class="ui-br-ext-module-label" (click)="downloadImage(i)">{{screenshot.filename}}</span>
+            <span  class="ui-br-ext-module-icons ui-br-ext-trash-icon" (click)="onDeleteScreenshot(screenshot.filename)">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>
+            </span>
+        </li>
+    </ul>
+</div>

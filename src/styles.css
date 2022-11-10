@@ -96,6 +96,7 @@ body .ui-br-ext-outlined-element-selected {
 }
 .ui-br-ext-extension .ui-br-ext-menu-container span.ui-br-ext-active svg {
   color: #00ad55;
+  stroke: #00ad55;
   transform: scale(1.3);
 }
 .ui-br-ext-extension .ui-br-ext-menu-container span.ui-br-ext-active::before {
@@ -622,6 +623,7 @@ body .ui-br-ext-outlined-element-selected {
 }
 .ui-br-ext-dropdown .ui-br-ext-dropdown-item .ui-br-ext-drop-body .ui-br-ext-selector-component .ui-br-ext-operator.ui-br-ext-active svg {
   color: #00dd55;
+  stroke: #00dd55;
   transform: scale(1.3);
 }
 .ui-br-ext-dropdown .ui-br-ext-dropdown-item .ui-br-ext-drop-body .ui-br-ext-selector-component .ui-br-ext-operator.ui-br-ext-active::before {
@@ -713,6 +715,21 @@ body .ui-br-ext-outlined-element-selected {
 }
 .ui-br-ext-dropdown .ui-br-ext-dropdown-item.ui-br-ext-report-bug {
   min-width: 500px;
+}
+.ui-br-ext-dropdown .ui-br-ext-selection-list {
+  padding: 20px 0;
+}
+.ui-br-ext-dropdown .ui-br-ext-selection-list ul li {
+  height: 37px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.ui-br-ext-dropdown .ui-br-ext-selection-list ul li:hover {
+  background-color: #f7f7f7;
+}
+.ui-br-ext-dropdown .ui-br-ext-selection-list ul li span.ui-br-ext-trash-icon:hover {
+  cursor: pointer;
 }
 .ez-bug-element-label {
   position: absolute;

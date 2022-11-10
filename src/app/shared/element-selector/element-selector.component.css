@@ -4,18 +4,3 @@
 .ui-br-ext-operator::before {
   display: none !important;
 }
-.selection-list {
-  padding: 20px 0;
-}
-.selection-list ul li {
-  height: 37px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.selection-list ul li:hover {
-  background-color: #f7f7f7;
-}
-.selection-list ul li span.trash-icon:hover {
-  cursor: pointer;
-}

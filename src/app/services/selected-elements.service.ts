@@ -60,21 +60,23 @@ export class SelectedElementsService {
   }
 
   displayAllSelectedElements() {
-    if(this.elements.length == 0) this.elements = this.unsavedBugStorage.bugReport.elements!;
+    if(this.elements && this.elements.length == 0) this.elements = this.unsavedBugStorage.bugReport.elements!;
     
-    this.elements.forEach(elementData => {
-      let element: any;
-      try {
-        element = document.evaluate(elementData.xPath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;
-      } catch(e) {
-          console.log(e)
-      }
-
-      element.classList.add('ui-br-ext-outlined-element-selected');
-      element.setAttribute('ez-bug-selected-label', elementData.dataLabel);
-
-      this.positionLabel(elementData.label, elementData.dataLabel, element);
-    });
+    if(this.elements) {
+      this.elements.forEach(elementData => {
+        let element: any;
+        try {
+          element = document.evaluate(elementData.xPath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;
+        } catch(e) {
+            console.log(e)
+        }
+  
+        element.classList.add('ui-br-ext-outlined-element-selected');
+        element.setAttribute('ez-bug-selected-label', elementData.dataLabel);
+  
+        this.positionLabel(elementData.label, elementData.dataLabel, element);
+      });
+    }
   }
 
   getElements(){

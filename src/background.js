@@ -16,6 +16,29 @@ function buttonClicked(tab) {
   console.log('inject background');
 }
 
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+  if (request.todo == 'getImage') {
+    console.log(request.todo);
+    chrome.tabs.captureVisibleTab(null, {format: 'png'}, (dataUrl) => {
+      sendResponse({imgSrc:dataUrl});
+    });
+ 
+    return true;
+  }
+  if (request.todo == 'setAlarm') {
+    console.log(request.todo);
+    chrome.alarms.create('videoAlarm', {
+      delayInMinutes: 1
+    });
+    return true;
+  }
+  if (request.todo == 'clearAlarm') {
+    console.log(request.todo);
+    chrome.alarms.clearAll();
+    return true;
+  }
+})
+
 chrome.commands.onCommand.addListener((command) => {
 
   //Cntr-Shift-S

@@ -1,0 +1,6 @@
+.ui-br-ext-selection-list {
+  padding: 20px 0;
+}
+.ui-br-ext-selection-list ul li span:hover {
+  cursor: pointer;
+}

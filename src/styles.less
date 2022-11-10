@@ -118,6 +118,7 @@ body {
             &.ui-br-ext-active {
                 svg {
                     color: @primary-color;
+                    stroke: @primary-color;
                     transform: scale(1.3);
                 }
 
@@ -702,6 +703,7 @@ body {
                     &.ui-br-ext-active {
                         svg {
                             color: #00dd55;
+                            stroke: #00dd55;
                             transform: scale(1.3);
                         }
                 
@@ -813,6 +815,27 @@ body {
         }
         &.ui-br-ext-report-bug {
             min-width: 500px;
+        }
+    }
+
+    .ui-br-ext-selection-list {
+        padding: 20px 0;
+        ul {
+            li {
+                height: 37px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                &:hover {
+                    background-color: #f7f7f7;
+                }
+                span.ui-br-ext-trash-icon {
+                    &:hover {
+                        cursor: pointer;
+                    }
+    
+                }
+            }
         }
     }
 }

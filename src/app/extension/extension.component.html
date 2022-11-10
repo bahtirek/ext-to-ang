@@ -1,5 +1,5 @@
 <!--  -->
-<div class="ui-br-ext-extension ui-br-ext-alwaysOn" id="ui-br-ext-extension" style="outline: none !important;">
+<div class="ui-br-ext-extension ui-br-ext-alwaysOn" id="ui-br-ext-extension" style="outline: none !important;" [ngStyle]="{'display': hideExtension ? 'none' : 'block'}">
     <app-menu></app-menu>
     <div class="ui-br-ext-container ui-br-ext-dropdown"
     [ngSwitch]="activeBtn"
