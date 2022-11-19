@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActiveBtnService } from '../services/active-btn.service';
+import { AuthService } from '../services/auth.service';
 import { ToggleExtensionService } from '../services/toggle-extension.service';
 import { UnsavedBugStorageService } from '../services/unsaved-bug-storage.service';
 
@@ -12,10 +13,15 @@ export class ExtensionComponent implements OnInit {
 
   hideExtension: boolean = false;
 
-  constructor(private activeBtnService: ActiveBtnService, private unsavedBugStorage: UnsavedBugStorageService, private toggleExtension: ToggleExtensionService) { }
+  constructor(private activeBtnService: ActiveBtnService, private unsavedBugStorage: UnsavedBugStorageService, private toggleExtension: ToggleExtensionService, private auth: AuthService) { }
 
   activeBtn: string = '';
 
+  config = {
+      registrationKey:"1636b16263fc27",
+      userEmail:"bahtirek@gmail.com",
+      userAppId:"79883af2-806e-4db7-b217-3c90e3dc2637"
+  }
   ngOnInit(): void {
     this.activeBtnService.activeBtnSubject.subscribe(
       activeBtn => {
@@ -29,6 +35,11 @@ export class ExtensionComponent implements OnInit {
         this.hideExtension = state
       }
     )
+
+    this.auth.auth(this.config).subscribe(data => {
+      console.log(data);
+      
+    })
   }
 
 }
