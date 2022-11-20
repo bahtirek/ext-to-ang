@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AccountService } from '../services/account.service';
 import { ActiveBtnService } from '../services/active-btn.service';
 import { AuthService } from '../services/auth.service';
 import { ToggleExtensionService } from '../services/toggle-extension.service';
@@ -13,7 +14,7 @@ export class ExtensionComponent implements OnInit {
 
   hideExtension: boolean = false;
 
-  constructor(private activeBtnService: ActiveBtnService, private unsavedBugStorage: UnsavedBugStorageService, private toggleExtension: ToggleExtensionService, private auth: AuthService) { }
+  constructor(private activeBtnService: ActiveBtnService, private unsavedBugStorage: UnsavedBugStorageService, private toggleExtension: ToggleExtensionService, private auth: AuthService, private accountService: AccountService) { }
 
   activeBtn: string = '';
 
@@ -37,8 +38,7 @@ export class ExtensionComponent implements OnInit {
     )
 
     this.auth.auth(this.config).subscribe(data => {
-      console.log(data);
-      
+      this.accountService.account = data;
     })
   }
 

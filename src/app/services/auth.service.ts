@@ -1,9 +1,9 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Observable, throwError } from 'rxjs';
+import { Observable} from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
-import { Config } from '../interfaces/config.interface';
+import { Account } from '../interfaces/account.interface';
 import { HandleErrorService } from './handleError.service';
 
 @Injectable({
@@ -21,24 +21,24 @@ export class AuthService {
         }),
     };
 
-    auth(config: Config): Observable<Config> {
+    auth(account: Account): Observable<Account> {
         const data = {
-            RegistrationKey: config.registrationKey,
-            UserEmail: config.userEmail,
-            UserAppId: config.userAppId
+            RegistrationKey: account.registrationKey,
+            UserEmail: account.userEmail,
+            UserAppId: account.userAppId
         }
-        return this.http.post<Config>(this.URL + '/get_config', data, )
+        return this.http.post<Account>(this.URL + '/get_config', data, this.httpOptions)
         .pipe(retry(1), catchError(this.errorService.handleError));
     }
 
-    verifyCode(config: Config, code: string){
+    verifyCode(account: Account, code: string){
         const data = {
-            RegistrationKey: config.registrationKey,
-            UserEmail: config.userEmail,
-            UserAppId: config.userAppId,
+            RegistrationKey: account.registrationKey,
+            UserEmail: account.userEmail,
+            UserAppId: account.userAppId,
             ConfirmationCode: code
         }
-        return this.http.post<Config>(this.URL + '/confirm_user', data, )
+        return this.http.post<Account>(this.URL + '/confirm_user', data, )
         .pipe(retry(1), catchError(this.errorService.handleError));
     }
 }
