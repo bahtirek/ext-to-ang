@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { TabsComponent } from '../shared/tabs/tabs.component';
 import { BugDetailsComponent } from '../shared/bug-details/bug-details.component';
 import { SubmitBugComponent } from '../shared/submit-bug/submit-bug.component';
+import { EnvironmentSearchComponent } from '../shared/environment-search/environment-search.component';
 
 
 
@@ -26,6 +27,7 @@ import { SubmitBugComponent } from '../shared/submit-bug/submit-bug.component';
     TabsComponent,
     BugDetailsComponent,
     SubmitBugComponent,
+    EnvironmentSearchComponent,
   ],
   imports: [
     CommonModule,
