@@ -13,8 +13,13 @@ export class EnvironmentSearchComponent implements OnInit {
   constructor(private environmentService: EnvironmentService, private accountService: AccountService) { }
 
   ngOnInit(): void {
+    this.setEnvironment()
+  }
+  setEnvironment() {
     this.environment = this.environmentService.environment;
-    this.searchQuery = this.environment?.name!;
+    if(this.environment && this.environment.name) {
+      this.searchQuery = this.environment.name;
+    }
   }
 
   @Input() validation: any = true;
@@ -44,7 +49,7 @@ export class EnvironmentSearchComponent implements OnInit {
             this.searchResults = []
         }
         this.environment = {};
-    }, 300);
+    }, 100);
   }
 
   getEnvironments(){
